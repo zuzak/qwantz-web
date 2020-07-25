@@ -10,10 +10,10 @@ block content
     .left (C) Ryan North
     .right www.qwantz.com
 
-  details
-    summary View JSON
-    pre= JSON.stringify(comic, null, 4)
-  if original
     details
-      summary View original transcript
-      pre= original
+      summary View JSON
+      pre= JSON.stringify(comic, null, 4)
+    if original
+      details
+        summary View original transcript
+        pre= original

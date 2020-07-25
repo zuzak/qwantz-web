@@ -1,13 +1,18 @@
 body
   padding: 50px
   color: gray
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif
-
+  font-family: "Lucida Console", monospace;
+  font-size: 14px;
 a
   color: #00B7FF
 
 details
-  margin: 1em 50px
+  clear: both
+  pre
+    font-size: 80%;
+  summary
+    text-decoration: underline
+
 
 
 .comic
@@ -15,7 +20,7 @@ details
     background-color: #ffffff9a
   display: flex;
   flex-flow: row wrap;
-  font-family: "Lucida Console", monospace;
+
   justify-content: center;
 
   .off-panel, .off-panel-whisper, .off-screen
@@ -30,7 +35,7 @@ details
   .t-rex 
     padding: 1em;
     color: rgb(0, 80, 25);
-  .dromiceiomimus, .Dromiceiomimus
+  .dromiceiomimus, .dromiciomimus
     color: rgb(189, 164, 0);
     float: right;
     padding-left: 154px;
@@ -91,11 +96,13 @@ details
   display: block;
   width: 735px;
   color: #7f7f7f
-  margin: 0.5em;
+  margin: auto
+  padding-top: 1em
   .left
     display: inline;
     text-align: left;
     float: left;
+    padding-bottom: 3em
   .right
     display: inline;
     text-align: right;
