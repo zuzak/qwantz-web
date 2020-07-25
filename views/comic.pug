@@ -1,0 +1,19 @@
+extends layout
+
+block content
+  .comic
+    each panel in comic
+      .panel
+        each line in panel
+          div(class=line.speaker.toLowerCase())= line.text
+  .footer
+    .left (C) Ryan North
+    .right www.qwantz.com
+
+  details
+    summary View JSON
+    pre= JSON.stringify(comic, null, 4)
+  if original
+    details
+      summary View original transcript
+      pre= original
