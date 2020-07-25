@@ -1,3 +1,5 @@
+
+$speech-line-thickness: 2px;
 body
   padding: 50px
   color: gray
@@ -16,6 +18,8 @@ details
 
 
 .comic
+  .panel div
+    padding: 0.5em;
   .panel div:hover 
     background-color: #ffffff9a
   display: flex;
@@ -41,12 +45,28 @@ details
     padding-left: 154px;
   .utahraptor
     color: rgb(122, 71, 0);
+  .god:first-child
+    margin-top: 10px;
+  .panel 
+    .god:first-child
+      position: relative
+      margin-top: 20px;
+    .god:first-child:after 
+      content: '';
+      position: absolute;
+      border-top: $speech-line-thickness solid black;
+      width: 15px;
+      top: -20px;
+      left: 20%;
+      transform: rotate(85deg);
+      transform-origin: 0% 0%;
 .panel
 
   background-color: white;
   background-position: bottom;
   background-repeat: no-repeat;
   background-size: contain;
+  padding-top: 1em;
   //padding: 1em;
   //padding-bottom: none;
 
@@ -62,12 +82,46 @@ details
   background-image: url("/images/panel1.png");
   background-size: 154px 144px;
   width: 239px;
+  div:last-child
+
+  .t-rex:last-child
+    position: relative;
+    margin-bottom: 200px;
+
+  .t-rex:last-child:after 
+    content: '';
+    position: absolute;
+    border-top: $speech-line-thickness solid black;
+    width: 50px;
+    top: 100%;
+    left: 30%;
+    transform: rotate(45deg);
+    transform-origin: 0% 0%;
+
+
+
 
 .panel:nth-child(2)
   background-image: url("/images/panel2.png");
   background-size: 123px 137px;
   background-position: bottom left;
   width: 127px;
+  div:last-child
+    margin-bottom: 120px;
+  .t-rex:last-child
+    margin-bottom: 180px;
+  .t-rex
+    position: relative
+  .t-rex:last-child:after 
+    content: '';
+    position: absolute;
+    border-top: $speech-line-thickness solid black;
+    width: 30px;
+    top: 100%;
+    left: 50%;
+    transform: rotate(85deg);
+    transform-origin: 0% 0%;
+
 
 
 .panel:nth-child(3)
