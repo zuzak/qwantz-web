@@ -45,7 +45,8 @@ router.get('/comic/:index', function (req, res, next) {
     original: comic,
     fileName,
     synthetic,
-    title: 'Dinosaur Comics'
+    title: 'Dinosaur Comics',
+    pretty: ' '
   })
 })
 
