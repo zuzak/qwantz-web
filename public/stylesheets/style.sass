@@ -303,21 +303,17 @@ main.comic
       transform: rotate(300deg);
       transform-origin: 0% 0%;
 
-.synthetic
-  outline: 5px solid red;
-  outline-offset: -1px;
-  padding: -1px;
-.synthetic:after, .synthetic:before
-  background-color: red;
-  content: 'Synthetic Content';
-  font-weight: bold;
-  text-transform: uppercase;
-  color: white;
-  display: block;
-  width: 100%;
-  text-align: center;
-  margin-top: 0;
-  outline: 1px solid red;
+  .panel:first-child
+    background-color: #90ffe3
+  .panel:first-child:before
+      display: block;
+      background-color: black;
+      text-align: center;
+      content: "TEXT PROMPT";
+      margin-top: -1em;
+      color: white;
+      font-weight: bold;
+      letter-spacing: 0.2em;
 
 footer
   display: block;
@@ -336,3 +332,35 @@ footer
     float: right;
   .center
     text-align: center;
+  
+    text-align: center;
+    color: white;
+    display: block;
+
+    width: 33%;
+    margin: auto;
+    margin-top: 0;
+
+.synthetic
+  .comic
+    .panel:first-child
+      background-color: #aefff8;
+    .panel:first-child:before
+      content: 'TEXT PROMPT'
+      font-weight: bold;
+      letter-spacing: 0.2em;
+      background-color: black;
+      color: #aefff8;
+      display: block;
+      margin-top: -1em;
+      text-align: center;
+  footer
+    .center:before
+      content: 'SYNTHETIC CONTENT'
+      clear
+      background-color: red;
+      font-weight: bold;
+      text-transform: uppercase;
+      margin-right: 1em;
+      padding: 0.5em;
+      text-align: center;

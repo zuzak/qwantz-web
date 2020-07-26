@@ -2,7 +2,7 @@ extends layout
 
 block content
   h1: a(href="/comic/random") Dinosaur Comics
-  main.comic(class=synthetic?'synthetic':'')
+  main.comic
     each panel in comic
       .panel
         each line in panel
@@ -11,10 +11,11 @@ block content
   footer
     .left (C) Ryan North
     .right www.qwantz.com
-    .center
     if fileName
+      .center: a(href="/comic/"+fileName)= fileName
+    else if synthetic
       .center
-        a(href="/comic/"+fileName)= fileName
+
     if process.env.NODE_ENV !== 'production'
       details
         summary View JSON
