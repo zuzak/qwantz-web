@@ -29,20 +29,23 @@ details
 
   .off-panel, .off-panel-whisper, .off-screen
     color: black;
-  .narrator, .unreliable-narrator, .god
+  .narrator, .unreliable-narrator, .title
     color: black;
     font-weight: bold;
     padding-left: 1em;
+  .god
+    color: black;
+    font-weight: 800;
   .devil, .the-devil
     color: #83080d;
-    font-weight: bold;
+    font-weight: bolder;
   .t-rex, .trex
     padding: 1em;
     color: rgb(0, 80, 25);
-  .dromiceiomimus, .dromiciomimus
+  .dromiceiomimus, .dromiciomimus, .dromeceiomimus
     color: rgb(189, 164, 0);
     float: right;
-    padding-left: 154px;
+    margin-left: 50px;
   .utahraptor
     color: rgb(122, 71, 0);
   .god:first-child
@@ -82,11 +85,12 @@ details
   background-image: url("/images/panel1.png");
   background-size: 154px 144px;
   width: 239px;
+  padding-bottom: 150px;
   div:last-child
 
   .t-rex:last-child
     position: relative;
-    margin-bottom: 200px;
+    padding-bottom: 30px;
 
   .t-rex:last-child:after 
     content: '';
@@ -128,6 +132,39 @@ details
   background-image: url("/images/panel3.png");
   background-size: 360px 184px;
   width: 358px;
+
+  .t-rex:last-child
+    clear: both;
+    position: relative;
+    padding-bottom: 170px;
+    text-align-last: center;
+
+  .t-rex:last-child:after 
+    content: '';
+    position: absolute;
+    border-top: $speech-line-thickness solid black;
+    width: 40px;
+    bottom: 160px;
+    left: 170px;
+    transform: rotate(120deg);
+    transform-origin: 0% 0%;
+  
+  .dromiceiomimus:last-child,
+  .dromiciomimus:last-child,
+  .dromeceiomimus:last-child
+    position: relative
+
+  .dromiceiomimus:last-child:after,
+  .dromiciomimus:last-child:after,
+  .dromeceiomimus:last-child:after
+    content: '';
+    position: absolute;
+    border-top: $speech-line-thickness solid black;
+    width: 40px;
+    bottom: -5px;
+    left: 170px;
+    transform: rotate(60deg);
+    transform-origin: 0% 0%;
 
 .panel:nth-child(4)
   background-image: url("/images/panel4.png");
