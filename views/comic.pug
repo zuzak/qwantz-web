@@ -15,8 +15,7 @@ block content
       a(href="/generate") Create your own
     if fileName
       .right
-        span Permalink:&nbsp;
-        a(href="/comic/"+fileName)= fileName
+        a(href="/comic/"+fileName) Permalink
     else if synthetic
       .right
     if process.env.NODE_ENV !== 'production'
