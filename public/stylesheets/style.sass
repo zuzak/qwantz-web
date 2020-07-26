@@ -5,21 +5,28 @@ $panel-border-thickness: 3px;
 $devil: #83080d
 
 html
-  background-color: white
+  background-color: white;
   margin: 0
 body
-  margin: 0
+  margin: 0;
+  margin-bottom: 1em;
   background-position: top;
   background-repeat: no-repeat;
   background-size: contain;
   background: linear-gradient(180deg, rgba(72,134,251,1) 0%, rgba(255,255,255,1) 40%);
-  padding: 50px
+ 
   color: gray
   font-family: "Lucida Console", monospace;
   font-size: 14px;
 a
   color: #00B7FF
-
+h1
+  text-align: center
+  margin: 0;
+  padding: 0.5em;
+  a
+    color: white
+    font-style: italic;
 details
   clear: both
   pre
@@ -33,6 +40,8 @@ details
   display: none
 
 .comic
+  max-width: 740px;
+  margin: auto
   .panel div
     padding: 0.5em;
   .panel div:hover
