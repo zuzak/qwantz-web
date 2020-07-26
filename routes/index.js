@@ -40,7 +40,13 @@ router.get('/comic/:index', function (req, res, next) {
     })
   })
   //res.json(comic)
-  res.render('comic', {comic: parsedPanels, original: comic, fileName, synthetic})
+  res.render('comic', {
+    comic: parsedPanels,
+    original: comic,
+    fileName,
+    synthetic,
+    title: 'Dinosaur Comics'
+  })
 })
 
 module.exports = router;
