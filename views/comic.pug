@@ -1,7 +1,9 @@
 extends layout
 
 block content
-  h1: a(href="/comic/random") GPT Dinosaur Comics
+  h1: a(href="/comic/random")
+    span GPT Dinosaur Comics
+    span.button (Show another?)
   main.comic
     each panel in comic
       .panel
