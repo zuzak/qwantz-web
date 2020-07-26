@@ -2,8 +2,12 @@
 $speech-line-thickness: 2px;
 $panel-border-thickness: 3px;
 
+$narrator: black
+$god: $narrator
 $devil: #83080d
-
+$t-rex: rgb(0, 80, 25);
+$dromiceiomimus: rgb(189, 164, 0);
+$utahraptor: rgb(122, 71, 0);
 html
   background-color: white;
   margin: 0
@@ -53,17 +57,18 @@ main.comic
   justify-content: center;
 
   .off-panel, .off-panel-whisper, .off-screen
-    color: black;
+    color: $narrator;
   .narrator, .unreliable-narrator, .title
-    color: black;
+    color: $narrator;
     font-weight: bold;
     padding-left: 1em;
   .tiny-woman, .woman
     font-size: 80%;
     margin-left: 20%;
+    color: $narrator;
 
   .god
-    color: black;
+    color: $god;
     font-weight: 800;
   .devil, .the-devil
     color: $devil;
@@ -71,7 +76,7 @@ main.comic
   .t-rex, .trex
     padding: 1em;
     clear: both;
-    color: rgb(0, 80, 25);
+    color: $t-rex;
   .dromeceiomimus, .dromeceomimus, .dromeciomeous,
   .dromeciomimus, .dromiceimimus, .dromiceimomimus,
   .dromiceioimus, .dromiceiomemus, .dromiceiomimius,
@@ -79,11 +84,11 @@ main.comic
   .dromiceiomumis, .dromiceomimus, .dromicieomimus,
   .dromiciomimus, .dromiecieomimus, .dromiiceiomimus,
   .drommiceiomimus, .dromoceiomimus, .dromoceiomimus
-    color: rgb(189, 164, 0);
+    color: $dromiceiomimus;
     float: right;
     margin-left: 50px;
   .utahraptor
-    color: rgb(122, 71, 0);
+    color: $utahraptor;
   .god:first-child
     margin-top: 10px;
   .panel
@@ -92,7 +97,7 @@ main.comic
     .god:first-child:after
       content: '';
       position: absolute;
-      border-top: $speech-line-thickness solid black;
+      border-top: $speech-line-thickness solid $god;
       width: 15px;
       top: -20px;
       left: 20%;
@@ -141,7 +146,7 @@ main.comic
   .t-rex:last-child:after
     content: '';
     position: absolute;
-    border-top: $speech-line-thickness solid black;
+    border-top: $speech-line-thickness solid $t-rex;
     width: 50px;
     top: 100%;
     left: 30%;
@@ -163,7 +168,7 @@ main.comic
   .t-rex:last-child:after
     content: '';
     position: absolute;
-    border-top: $speech-line-thickness solid black;
+    border-top: $speech-line-thickness solid $t-rex;
     width: 50px;
     top: 100%;
     left: 50%;
@@ -186,7 +191,7 @@ main.comic
   .t-rex:last-child:after
     content: '';
     position: absolute;
-    border-top: $speech-line-thickness solid black;
+    border-top: $speech-line-thickness solid $t-rex;
     width: 40px;
     bottom: -10px;
     left: 170px;
@@ -207,7 +212,7 @@ main.comic
   .dromeceiomimus:last-child:after
     content: '';
     position: absolute;
-    border-top: $speech-line-thickness solid black;
+    border-top: $speech-line-thickness solid $dromiceiomimus;
     width: 40px;
     bottom: -5px;
     right: 50px;
@@ -229,7 +234,7 @@ main.comic
   .t-rex:last-child:after
     content: '';
     position: absolute;
-    border-top: $speech-line-thickness solid black;
+    border-top: $speech-line-thickness solid $t-rex;
     width: 40px;
     bottom: -10px;
     left: 40%;
@@ -242,7 +247,7 @@ main.comic
     content: '';
     display: block;
     position: relative;
-    border-top: $speech-line-thickness solid black;
+    border-top: $speech-line-thickness solid $utahraptor;
     width: 20px;
     bottom: -25px;
     left: 60%;
@@ -262,7 +267,7 @@ main.comic
     content: '';
     display: block;
     position: relative;
-    border-top: $speech-line-thickness solid black;
+    border-top: $speech-line-thickness solid $utahraptor;
     width: 50px;
     bottom: -60px;
     left: 60%;
@@ -273,7 +278,7 @@ main.comic
   .t-rex:last-child:after
     content: '';
     position: absolute;
-    border-top: $speech-line-thickness solid black;
+    border-top: $speech-line-thickness solid $t-rex;
     width: 40px;
     bottom: -10px;
     left: 40%;
@@ -291,7 +296,7 @@ main.comic
   .t-rex:last-child:after
     content: '';
     position: absolute;
-    border-top: $speech-line-thickness solid black;
+    border-top: $speech-line-thickness solid $t-rex;
     width: 50px;
     top: 100%;
     left: 30%;
@@ -301,7 +306,7 @@ main.comic
   .utahraptor:last-child:after
     content: '';
     position: absolute;
-    border-top: $speech-line-thickness solid black;
+    border-top: $speech-line-thickness solid $utahraptor;
     width: 40px;
     bottom: 0px;
     left: 10%;
@@ -314,7 +319,7 @@ main.comic
   .god:last-child:after
       content: '';
       position: absolute;
-      border-top: $speech-line-thickness solid black;
+      border-top: $speech-line-thickness solid $god;
       width: 15px;
       top: 0px;
       right: 0;
