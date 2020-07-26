@@ -12,6 +12,9 @@ block content
   .footer
     .left (C) Ryan North
     .right www.qwantz.com
+    if fileName
+      .center
+        a(href="/comic/"+fileName)= fileName
 
     details
       summary View JSON

@@ -12,12 +12,13 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
-router.get('/comic/random', function (req, res, next) {
+router.get('/comic/:index', function (req, res, next) {
   const dir = 'comics'
-  console.log(dir)
-  const files = fs.readdirSync(dir)
-  const fileName =  files[Math.floor(Math.random() * files.length)]
-
+  let fileName = req.params.index
+  if (req.params.index == 'random') {
+    const files = fs.readdirSync(dir)
+    fileName =  files[Math.floor(Math.random() * files.length)]
+  }
   const comic = fs.readFileSync(path.join(dir, fileName), 'utf8')
   const panels = comic.split('\n\n')
   const parsedPanels = panels.map((panel) => {                                 
@@ -29,7 +30,7 @@ router.get('/comic/random', function (req, res, next) {
     })                                                                         
   }) 
   //res.json(comic)     
-  res.render('comic', {comic: parsedPanels, original: comic})
+  res.render('comic', {comic: parsedPanels, original: comic, fileName})
 })
 
 module.exports = router;
