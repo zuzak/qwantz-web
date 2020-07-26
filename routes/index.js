@@ -28,27 +28,8 @@ router.get('/comic/:index', function (req, res, next) {
   const synthetic = fileName.includes('gpt')
   const comic = fs.readFileSync(path.join(dir, fileName), 'utf8')
   const panels = comic.split('\n\n')
-  const parsedPanels = panels.map((panel) => {
-    const lines = panel.split('\n')
-    return lines.map((line) => {
-      if (line.startsWith('{{')) return null
-      const x = line.split(': ')
-      if (x.length === 1) {
-        if (line && line == line.toUpperCase()) {
-          return {speaker: slug('Narrator'), text: line}
-        } else {
-          return null
-        }
-      }
-      const speaker = slug(x[0])
-      const speech = x.splice(1).join(': ');
-      if (!speech) return null
-      return {speaker, text: speech}
-    })
-  })
-  //res.json(comic)
   res.render('comic', {
-    comic: parsedPanels,
+    comic: generate(comic),
     original: comic,
     fileName,
     synthetic,
