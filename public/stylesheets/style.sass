@@ -238,7 +238,19 @@ main.comic
     left: 40%;
     transform: rotate(120deg);
     transform-origin: 0% 0%;
-
+  .utahraptor:last-child
+    text-align-last: center;
+    margin-bottom: 180px;
+  .utahraptor:last-child:after
+    content: '';
+    display: block;
+    position: relative;
+    border-top: $speech-line-thickness solid black;
+    width: 20px;
+    bottom: -25px;
+    left: 60%;
+    transform: rotate(250deg);
+    transform-origin: 0% 0%;
 
 .panel:nth-child(5)
   background-image: url("/images/panel5.svg");
