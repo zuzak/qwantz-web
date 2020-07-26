@@ -135,11 +135,11 @@ main.comic
   background-image: url("/images/panel1.png");
   background-size: 154px 144px;
   width: 239px;
-  padding-bottom: 150px;
+  //padding-bottom: 150px;
   div:last-child
 
   .t-rex:last-child
-    padding-bottom: 30px;
+    margin-bottom: 150px;
 
   .t-rex:last-child:after
     content: '';
@@ -160,9 +160,9 @@ main.comic
   background-position: bottom left;
   width: 127px;
   div:last-child
-    margin-bottom: 120px;
+   // margin-bottom: 120px;
   .t-rex:last-child
-    margin-bottom: 180px;
+    margin-bottom: 200px;
   .t-rex:last-child:after
     content: '';
     position: absolute;
@@ -183,7 +183,7 @@ main.comic
   .t-rex:last-child
     clear: both;
     position: relative;
-    padding-bottom: 170px;
+    margin-bottom: 220px;
     text-align-last: center;
 
   .t-rex:last-child:after
@@ -191,25 +191,29 @@ main.comic
     position: absolute;
     border-top: $speech-line-thickness solid black;
     width: 40px;
-    bottom: 160px;
+    bottom: -10px;
     left: 170px;
     transform: rotate(120deg);
     transform-origin: 0% 0%;
 
   .dromiceiomimus:last-child,
   .dromiciomimus:last-child,
+  .dromiceomimus:last-child,
   .dromeceiomimus:last-child
     position: relative
+    margin-bottom: 120px;
+    margin-left: 130px;
 
   .dromiceiomimus:last-child:after,
   .dromiciomimus:last-child:after,
+  .dromiceomimus:last-child:after,
   .dromeceiomimus:last-child:after
     content: '';
     position: absolute;
     border-top: $speech-line-thickness solid black;
     width: 40px;
     bottom: -5px;
-    left: 170px;
+    right: 50px;
     transform: rotate(60deg);
     transform-origin: 0% 0%;
 
@@ -223,6 +227,8 @@ main.comic
     bottom: 70px;
     left: -70px;
     width: 30px;
+  .t-rex:last-child
+    margin-bottom: 200px;
   .t-rex:last-child:after
     content: '';
     position: absolute;
@@ -242,15 +248,19 @@ main.comic
 
   .utahraptor:last-child
     text-align-last: center;
+    margin-bottom: 200px;
   .utahraptor:last-child:after
     content: '';
+    display: block;
     position: relative;
     border-top: $speech-line-thickness solid black;
     width: 50px;
-    top: 100%;
+    bottom: -60px;
     left: 60%;
-    transform: rotate(60deg);
+    transform: rotate(250deg);
     transform-origin: 0% 0%;
+  .t-rex:last-child
+    margin-bottom: 190px;
   .t-rex:last-child:after
     content: '';
     position: absolute;
@@ -267,6 +277,8 @@ main.comic
   background-position: bottom left 20px;
   width: 239px;
 
+  .t-rex:last-child
+    margin-bottom: 200px;
   .t-rex:last-child:after
     content: '';
     position: absolute;
