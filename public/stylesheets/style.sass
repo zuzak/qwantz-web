@@ -247,7 +247,24 @@ details
   background-position: bottom left 20px;
   width: 239px;
 
-.footer
+.synthetic
+  outline: 5px solid red;
+  outline-offset: -1px;
+  padding: -1px;
+.synthetic:after, .synthetic:before
+  background-color: red;
+  content: 'Synthetic Content';
+  font-weight: bold;
+  text-transform: uppercase;
+  color: white;
+  display: block;
+  width: 100%;
+  text-align: center;
+  margin-top: 0;
+  outline: 1px solid red;
+
+footer
+ 
   display: block;
   width: 735px;
   color: #7f7f7f

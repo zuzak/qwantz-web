@@ -2,7 +2,7 @@ extends layout
 
 block content
   h1: a(href="/comic/random") Dinosaur Comics
-  .comic
+  main.comic(class=synthetic?'synthetic':'')
     each panel in comic
       .panel
         each line in panel

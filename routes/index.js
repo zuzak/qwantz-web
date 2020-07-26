@@ -19,6 +19,7 @@ router.get('/comic/:index', function (req, res, next) {
     const files = fs.readdirSync(dir)
     fileName =  files[Math.floor(Math.random() * files.length)]
   }
+  const synthetic = fileName.includes('gpt')
   const comic = fs.readFileSync(path.join(dir, fileName), 'utf8')
   const panels = comic.split('\n\n')
   const parsedPanels = panels.map((panel) => {                                 
@@ -30,7 +31,7 @@ router.get('/comic/:index', function (req, res, next) {
     })                                                                         
   }) 
   //res.json(comic)     
-  res.render('comic', {comic: parsedPanels, original: comic, fileName})
+  res.render('comic', {comic: parsedPanels, original: comic, fileName, synthetic})
 })
 
 module.exports = router;
