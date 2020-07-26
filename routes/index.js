@@ -56,14 +56,18 @@ router.get('/comic/:index', function (req, res, next) {
     fileName =  files[Math.floor(Math.random() * files.length)]
   }
   const synthetic = fileName.includes('gpt')
+  const prompted = fileName.includes('gpt2')
   const comic = fs.readFileSync(path.join(dir, fileName), 'utf8')
   const panels = comic.split('\n\n')
+  let bodyClass = ''
+  if (synthetic) bodyClass += ' synthetic'
+  if (prompted) bodyClass += ' prompted'
   res.render('comic', {
     comic: generate(comic),
     original: comic,
     fileName,
-    synthetic,
-    title: 'Dinosaur Comics',
+    bodyClass: bodyClass.trim(),
+    title: 'GPT Dinosaur Comics',
     pretty: ' '
   })
 })
