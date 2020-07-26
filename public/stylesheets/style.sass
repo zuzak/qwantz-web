@@ -1,6 +1,9 @@
 
 $speech-line-thickness: 2px;
 $panel-border-thickness: 3px;
+
+$devil: #83080d
+
 html
   background-color: white
   margin: 0
@@ -49,7 +52,7 @@ details
     color: black;
     font-weight: 800;
   .devil, .the-devil
-    color: #83080d;
+    color: $devil;
     font-weight: bolder;
   .t-rex, .trex
     padding: 1em;
@@ -79,6 +82,15 @@ details
       top: -20px;
       left: 20%;
       transform: rotate(85deg);
+      transform-origin: 0% 0%;
+    .devil:last-child:after, .the-devil:last-child:after
+      content: '';
+      position: absolute;
+      border-top: $speech-line-thickness solid $devil;
+      width: 50px;
+      bottom: -50px;
+      left: 5px;
+      transform: rotate(280deg);
       transform-origin: 0% 0%;
 .panel
   div
