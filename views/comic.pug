@@ -11,13 +11,14 @@ block content
   footer
     .left (C) Ryan North
     .right www.qwantz.com
+    .center
     if fileName
       .center
         a(href="/comic/"+fileName)= fileName
-
-    details
-      summary View JSON
-      pre= JSON.stringify(comic, null, 4)
+    if process.env.NODE_ENV !== 'production'
+      details
+        summary View JSON
+        pre= JSON.stringify(comic, null, 4)
     if original
       details
         summary View original transcript
