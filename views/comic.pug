@@ -9,13 +9,16 @@ block content
           if line
             div(class=line.speaker.toLowerCase())= line.text
   footer
-    .left (C) Ryan North
-    .right www.qwantz.com
+    .left
+      a(href="https://qwantz.com") (C) Ryan North
+      span &nbsp;&middot;&nbsp;
+      a(href="/generate") Create your own
     if fileName
-      .center: a(href="/comic/"+fileName)= fileName
+      .right
+        span Permalink:&nbsp;
+        a(href="/comic/"+fileName)= fileName
     else if synthetic
-      .center
-
+      .right
     if process.env.NODE_ENV !== 'production'
       details
         summary View JSON

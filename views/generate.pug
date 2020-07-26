@@ -1,0 +1,12 @@
+extends layout
+
+block content
+  h1: a(href="/comic/random") Dinosaur Comics
+  main.generator
+    p.
+      Enter a transcript into the textbox.
+      Press enter twice to start a new panel.
+      She spells it &ldquo;Dromiceiomimus&rdquo;.
+    form(method="POST")
+      textarea(name="comic")
+      input(type="submit")

@@ -18,6 +18,36 @@ router.get('/comic', function (req, res, next) {
   res.redirect('/comic/random')
 })
 
+
+router.get('/generate', function (req, res, next) {
+  res.render('generate')
+})
+const bodyParser = require('body-parser').text()
+router.post('/generate', bodyParser, function (req, res, next) {
+  
+  const comic = req.body.comic.replace(/\r/g, '')
+  const buffer = new Buffer(comic)
+  const base64 = buffer.toString('base64')
+    .replace(/=/g, "")
+    .replace(/\+/g, "-")
+    .replace(/\//g, "_");
+  res.redirect(`/generate/${base64}`)
+})
+router.get('/generate/:base64', function (req, res, next) {
+  const buffer = new Buffer(
+    req.params.base64
+      .replace(/\-/g, "+")
+      .replace(/_/g, "/")
+    , 'base64')
+  const comic = buffer.toString('ascii')
+  res.render('comic', {
+    comic: generate(buffer.toString('ascii')),
+    original: buffer.toString('ascii'),
+    title: 'Generated Output',
+    pretty: ' '
+  })
+})
+
 router.get('/comic/:index', function (req, res, next) {
   const dir = 'comics'
   let fileName = req.params.index
