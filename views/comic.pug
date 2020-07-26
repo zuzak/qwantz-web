@@ -6,9 +6,7 @@ block content
     each panel in comic
       .panel
         each line in panel
-          div(class=line.speaker.toLowerCase())
-            span.sr-only=line.speaker+": "
-            span= line.text
+          div(class=line.speaker.toLowerCase())= line.text
   .footer
     .left (C) Ryan North
     .right www.qwantz.com
