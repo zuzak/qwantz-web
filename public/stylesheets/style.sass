@@ -1,5 +1,6 @@
 
 $speech-line-thickness: 2px;
+$panel-border-thickness: 3px;
 html
   background-color: white
   margin: 0
@@ -95,6 +96,11 @@ details
 
   min-height: 245px;
 
+.panel:nth-child(1), .panel:nth-child(2),
+.panel:nth-child(4), .panel:nth-child(5)
+  border-right-width: $panel-border-thickness/2;
+.panel:nth-child(1), .panel:nth-child(2), .panel:nth-child(3)
+  border-bottom-width: $panel-border-thickness/2;
 
 .panel:nth-child(1)
   background-image: url("/images/panel1.png");
