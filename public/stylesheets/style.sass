@@ -216,12 +216,21 @@ details
   background-image: url("/images/panel4.png");
   background-size: 191px 170px;
   width: 190px;
-  padding-bottom: 190px;
+  //padding-bottom: 190px;
   .tiny-woman,.woman
     position: absolute;
     bottom: 70px;
     left: -70px;
     width: 30px;
+  .t-rex:last-child:after
+    content: '';
+    position: absolute;
+    border-top: $speech-line-thickness solid black;
+    width: 40px;
+    bottom: -10px;
+    left: 40%;
+    transform: rotate(120deg);
+    transform-origin: 0% 0%;
 
 
 .panel:nth-child(5)
@@ -230,22 +239,56 @@ details
   background-position: bottom -5px left -6px;
   width: 295px;
 
+  .utahraptor:last-child
+    text-align-last: center;
   .utahraptor:last-child:after
     content: '';
-    position: absolute;
+    position: relative;
     border-top: $speech-line-thickness solid black;
     width: 50px;
     top: 100%;
     left: 60%;
     transform: rotate(60deg);
     transform-origin: 0% 0%;
-
+  .t-rex:last-child:after
+    content: '';
+    position: absolute;
+    border-top: $speech-line-thickness solid black;
+    width: 40px;
+    bottom: -10px;
+    left: 40%;
+    transform: rotate(120deg);
+    transform-origin: 0% 0%;
 
 .panel:nth-child(6)
   background-image: url("/images/panel6.png");
   background-size: 128px 184px;
   background-position: bottom left 20px;
   width: 239px;
+
+  .t-rex:last-child:after
+    content: '';
+    position: absolute;
+    border-top: $speech-line-thickness solid black;
+    width: 50px;
+    top: 100%;
+    left: 30%;
+    transform: rotate(80deg);
+    transform-origin: 0% 0%;
+
+  .god:last-child
+    width: 50%;
+    float: right
+  .god:last-child:after
+      content: '';
+      position: absolute;
+      border-top: $speech-line-thickness solid black;
+      width: 15px;
+      top: 0px;
+      right: 0;
+
+      transform: rotate(300deg);
+      transform-origin: 0% 0%;
 
 .synthetic
   outline: 5px solid red;
