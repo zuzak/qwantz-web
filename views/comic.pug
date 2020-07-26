@@ -6,8 +6,9 @@ block content
     each panel in comic
       .panel
         each line in panel
-          div(class=line.speaker.toLowerCase())= line.text
-  .footer
+          if line
+            div(class=line.speaker.toLowerCase())= line.text
+  footer
     .left (C) Ryan North
     .right www.qwantz.com
     if fileName
