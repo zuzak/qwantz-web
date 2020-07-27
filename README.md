@@ -13,6 +13,8 @@ Not an official thing, just a fan creation.
 
    run the app:
      $ DEBUG=qwantz-web:* npm start
+  
+   For GPT to work, you'll need to download separately [gpt2tc](https://bellard.org/nncp/gpt2tc.html) and place it in the `gpt` directory.
 
 ## Transcripts
    stick a load of transcripts, one per file, in a `comics` folder in project root
