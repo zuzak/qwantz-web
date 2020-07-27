@@ -6,6 +6,8 @@ const path = require('path')
 const generate = require('../lib/generate')
 
 const slug = require('slug')
+const rateLimit = require('express-rate-limit')
+
 var router = express.Router();
 
 /* GET home page. */
@@ -47,6 +49,12 @@ router.get('/generate/:base64', function (req, res, next) {
     pretty: ' '
   })
 })
+
+router.get('/comic/random', rateLimit({
+  windowMs: 1000 * 5,
+  max: 10,
+  message: 'You’re refreshing too fast! Slow down!'
+}), (req, res, next) => next())
 
 router.get('/comic/:index', function (req, res, next) {
   const dir = 'comics'
