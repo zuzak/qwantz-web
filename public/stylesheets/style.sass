@@ -9,8 +9,8 @@ $t-rex: rgb(0, 80, 25);
 $dromiceiomimus: rgb(189, 164, 0);
 $utahraptor: rgb(122, 71, 0);
 html
-  background-color: white;
-  margin: 0
+  margin: auto
+  height: 100%;
 body
   margin: 0;
   margin-bottom: 1em;
@@ -405,3 +405,22 @@ footer
   white-space: pre-wrap;
 
 
+
+@media only screen and (max-width: 725px)
+  .panel
+    margin: 3em
+  main.comic, details
+    justify-content: center;
+  footer
+    .right:before
+      clear: both;
+      float: right;
+      display: block;
+      margin-left: 1em;
+      font-size: 250%;
+    .right
+      clear: right
+    .right, .left
+      float: none;
+      text-align: center;
+      display: block
