@@ -90,6 +90,7 @@ const generateNewComic = (form) => {
     request.open('POST', window.location.href)
     const formData = new FormData(form)
     console.log(formData.get('comic'), form)
+    let oldData = ''
     request.onreadystatechange = () => {
         console.log("state change.. state: "+ request.readyState);
         if (request.readyState === 3) {
@@ -98,11 +99,15 @@ const generateNewComic = (form) => {
             data = data.split('<|endoftext|>', 1)
             if (data.length > 1) {
                 request.abort()
+                console.log("staste change.. state: "+ request.readyState);
             }
             data = data.join('')
-            transcript.textContent = data
-            generateComic(comic, data)
-            window.scrollTo(0,document.body.scrollHeight)
+            if (data !== oldData) {
+                oldData = data
+                transcript.textContent = data
+                generateComic(comic, data)
+                window.scrollTo(0,document.body.scrollHeight)
+            }
 
         } else if (request.readyState === 4 || request.readyState === 0) {
             button.disabled = false
