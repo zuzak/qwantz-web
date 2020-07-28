@@ -48,17 +48,17 @@ details
 
 main.comic
   clear: both;
-  //max-width: 740px;
+  max-width: 740px;
   margin: auto
   .panel div
     padding: 0.5em;
 
   .panel div:hover
     background-color: #ffffff9a
+
   display: flex;
   flex-flow: row wrap;
-
-  justify-content: center;
+  justify-content: left;
 
   .off-panel, .off-panel-whisper, .off-screen
     color: $narrator;
@@ -124,10 +124,11 @@ main.comic
   background-repeat: no-repeat;
   background-size: contain;
 
+  border: none;
+  outline: 3px solid black;
+  outline-offset: -1.5px;
+
   display: inline-block;
-
-
-  border: 3px solid black;
 
   min-height: 245px;
 
