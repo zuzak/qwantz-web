@@ -1,7 +1,11 @@
 window.onload = () => {
-    const button = document.getElementById('submit')
-    console.log(button)
-    button.remove()
+    const form = document.getElementById('form')
+    form.addEventListener('submit', (event) => {
+        event.preventDefault()
+       // window.history.back()
+        generateNewComic(event.target)
+        return false
+    })
 
     const lede = document.getElementById('lede')
 
@@ -10,6 +14,12 @@ window.onload = () => {
     preview.className = 'preview comic prompt'
     preview.innerHTML = ''
     lede.before(preview)
+
+    const comic = document.createElement('div')
+    comic.id = 'comic'
+    comic.className = 'comic'
+    comic.innerHTML = ''
+    form.after(comic)
 
     const textarea = document.getElementById('textarea')
     generateComic(preview, textarea.value)
@@ -33,7 +43,6 @@ const transcriptToJson = (transcript) => {
             const x = line.split(': ')
             if (x.length === 1) {
                 if (line && line == line.toUpperCase()) {
-                    console.log('Narartor')
                     return {speaker: slugify('Narrator'), text: line}
                 } else {
                     return null
@@ -51,11 +60,9 @@ const jsonToHtml = (json) => {
     const comic = document.createElement('div')
     for (panel of json) {
         if (panel !== null) {
-            console.log('Creating panel!')
             const ePanel = document.createElement('div')
             ePanel.className = 'panel'
             for (line of panel) {
-                console.log('Line!', line)
                 if (line !== null) {
                     const eLine = document.createElement('div')
                     eLine.className = line.speaker
@@ -67,4 +74,45 @@ const jsonToHtml = (json) => {
         }
     }
     return comic.innerHTML
+}
+
+const generateNewComic = (form) => {
+    const button = document.getElementById('submit')
+    button.disabled = true
+    const comic = document.getElementById('comic')
+    const transcript = getTranscriptElement(form)
+    const request = new XMLHttpRequest()
+    request.open('POST', window.location.href)
+    const formData = new FormData(form)
+    request.onreadystatechange = () => {
+        console.log("state change.. state: "+ request.readyState);
+        if (request.readyState === 3) {
+            generateComic(comic,request.response)
+            transcript.textContent = request.response
+            comic.scrollIntoView(false, {smooth: true, block: 'end'})
+        } else if (request.readyState === 4) {
+            button.disabled = false
+        }
+    }
+    request.send(formData)
+}
+
+const getTranscriptElement = (form) => {
+    const existingTranscript = document.getElementById('transcript')
+
+    if (existingTranscript) return existingTranscript
+
+    const details = document.createElement('details')
+    form.after(details)
+
+    const summary = document.createElement('summary')
+    summary.textContent = 'Transcript'
+    details.append(summary)
+    
+    const transcript = document.createElement('p')
+    transcript.id = 'transcript'
+    transcript.className = 'transcript'
+    summary.after(transcript)
+
+    return transcript
 }
