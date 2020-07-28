@@ -46,7 +46,7 @@ details
 .sr-only, .no-dialog
   display: none
 
-main.comic
+.comic
   clear: both;
   max-width: 740px;
   margin: auto
@@ -357,19 +357,24 @@ footer
     margin: auto;
     margin-top: 0;
 
-.prompted
-  .comic
-    .panel:first-child
-      filter: grayscale(1);
-      background-color: #aefff8;
-    .panel:first-child:before
-      content: 'TEXT PROMPT'
-      font-weight: bold;
-      letter-spacing: 0.2em;
-      background-color: black;
-      color: #aefff8;
-      display: block;
-      text-align: center;
+
+.prompt .panel, .preview .panel
+    filter: grayscale(1);
+    background-color: #aefff8;
+
+.prompt .panel:before, .preview .panel:before
+    content: 'TEXT PROMPT'
+    font-weight: bold;
+    letter-spacing: 0.2em;
+    background-color: black;
+    color: #aefff8;
+    display: block;
+    text-align: center;
+
+.prompt .panel:before
+  content: 'TEXT PROMPT'
+.preview .panel:before
+  content: 'PREVIEW'
 .synthetic
   footer
     .right:before
@@ -421,3 +426,11 @@ footer
       float: none;
       text-align: center;
       display: block
+
+.generator
+  max-width: 700px;
+div.preview.comic
+  float: right
+  margin: 1em;
+.generator #lede
+  min-height: 240px;
