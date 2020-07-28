@@ -3,7 +3,7 @@ window.onload = () => {
     form.addEventListener('submit', (event) => {
         event.preventDefault()
        // window.history.back()
-        generateNewComic(event.target)
+        generateNewComic(form)
         return false
     })
 
@@ -15,11 +15,16 @@ window.onload = () => {
     preview.innerHTML = ''
     lede.before(preview)
 
+    const comicContainer = document.createElement('div')
+    comicContainer.className = 'comic-container'
+    comicContainer.id = 'comic-container'
+    form.after(comicContainer)
+
     const comic = document.createElement('div')
     comic.id = 'comic'
-    comic.className = 'comic'
+    comic.className = 'comic generated'
     comic.innerHTML = ''
-    form.after(comic)
+    comicContainer.append(comic)
 
     const textarea = document.getElementById('textarea')
     generateComic(preview, textarea.value)
@@ -84,16 +89,26 @@ const generateNewComic = (form) => {
     const request = new XMLHttpRequest()
     request.open('POST', window.location.href)
     const formData = new FormData(form)
+    console.log(formData.get('comic'), form)
     request.onreadystatechange = () => {
         console.log("state change.. state: "+ request.readyState);
         if (request.readyState === 3) {
-            generateComic(comic,request.response)
-            transcript.textContent = request.response
-            comic.scrollIntoView(false, {smooth: true, block: 'end'})
-        } else if (request.readyState === 4) {
+            let data = request.response
+            data = data.split('<|startoftext|>', 2).join('')
+            data = data.split('<|endoftext|>', 1)
+            if (data.length > 1) {
+                request.abort()
+            }
+            data = data.join('')
+            transcript.textContent = data
+            generateComic(comic, data)
+            window.scrollTo(0,document.body.scrollHeight)
+
+        } else if (request.readyState === 4 || request.readyState === 0) {
             button.disabled = false
         }
     }
+    if (formData === undefined) throw new Error("och naw");
     request.send(formData)
 }
 

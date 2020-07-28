@@ -1,7 +1,10 @@
 var express = require('express');
+const debug = require('debug')('qwantz-web:gpt')
 var router = express.Router();
 const {spawn} = require('child_process')
-const rateLimit = require('express-rate-limit')
+const rateLimit = require('express-rate-limit');
+const multer = require('multer')
+const upload = multer()
 
 router.get('/', function (req, res, next) {
   res.redirect('generate')
@@ -9,24 +12,26 @@ router.get('/', function (req, res, next) {
 router.get('/generate', function (req, res, next) {
   res.render('generate', {title: "GPT"})
 })
-const bodyParser = require('body-parser').text()
-router.post('/generate', bodyParser, rateLimit({
+
+router.post('/generate', rateLimit({
   windowMs: 1000 * 60,
   max: 10,
   message: 'Rate limited -- try again later'
-}), function (req, res, next) {
-  const prefix = '<|startoftext|>' + req.body.comic
+}), upload.none(), function (req, res, next) {
+  let prompt = req.body.comic ? req.body.comic : ''
+  const prefix = '<|startoftext|>' + prompt
+  debug(req.body)
   const args = ['-m', '117M', 'g', '-l', '500', prefix]
   res.type('text')
-  const cmd = spawn(
+  const gptStream = spawn(
     './gpt2tc',
     args,
     {cwd: 'gpt', shell: false}
   )
 
-  cmd.stdout.on('data', (data) => res.write(data))
-  cmd.stderr.on('data', (data) => res.write(data))
-  cmd.on('close', (code) => res.end())
+  gptStream.stdout.on('data', (data) => res.write(data))
+  gptStream.stderr.on('data', (data) => res.write(data))
+  gptStream.on('close', (code) => res.end())
 })
 
 module.exports = router;
