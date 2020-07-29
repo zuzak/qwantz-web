@@ -22,7 +22,8 @@ router.get('/comic', function (req, res, next) {
 
 
 router.get('/generate', function (req, res, next) {
-  res.render('generate')
+  res.redirect('/gpt/generate')
+  //res.render('generate')
 })
 const bodyParser = require('body-parser').text()
 router.post('/generate', bodyParser, function (req, res, next) {
