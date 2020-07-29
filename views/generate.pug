@@ -6,10 +6,20 @@ block append head
 block content
   h1: a(href="/comic/random") Dinosaur Comics
   main.generator
-    p#lede.
-      Enter a transcript into the textbox.
-      Press enter twice to start a new panel.
-      She spells it &ldquo;Dromiceiomimus&rdquo;.
+
+    p#lede
+      | Enter a prompt for GPT2tc into the textbox.
+      | Press enter twice to start a new panel, but one works best.
+      |
+      | Use ALL CAPS to add captions.
+      |
+      | Supported characters include T-Rex, Dromiceiomimus,
+      | Utahraptor, God, Narrator, and The Devil.
+      |
+      | e.g. &ldquo;T-Rex: I have opinions!&rdquo;
+      |
+      | If you get strange output, check the transcript!
+    p.copyright Dinosaur Comics (C) 2003 Ryan North
     form(method="POST")#form
       textarea#textarea(name="comic")
-      input#submit(type="submit")
+      input#submit(type="submit",name="Generate comic")

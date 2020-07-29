@@ -18,13 +18,17 @@ window.onload = () => {
     const comicContainer = document.createElement('div')
     comicContainer.className = 'comic-container'
     comicContainer.id = 'comic-container'
-    form.after(comicContainer)
+    preview.before(comicContainer)
 
     const comic = document.createElement('div')
     comic.id = 'comic'
-    comic.className = 'comic generated'
+    comic.className = 'comic generated synthetic'
     comic.innerHTML = ''
     comicContainer.append(comic)
+
+    const footer = document.createElement('footer')
+    footer.innerHTML = ''
+    comicContainer.append(footer)
 
     const textarea = document.getElementById('textarea')
     generateComic(preview, textarea.value)
@@ -39,7 +43,7 @@ const generateComic = (comic, transcript) => {
 }
 
 const transcriptToJson = (transcript) => {
-    const slugify = (str) => str.replace(/[!\"#$%&'\(\)\*\+,\.\/:;<=>\?\@\[\\\]\^`\{\|\}~]/g, '-').toLowerCase();
+    const slugify = (str) => str.replace(/[!\"# $%&'\(\)\*\+,\.\/:;<=>\?\@\[\\\]\^`\{\|\}~]/g, '-').toLowerCase();
     const panels = transcript.split('\n\n')
     return parsedPanels = panels.map((panel) => {
         const lines = panel.split('\n')
@@ -90,26 +94,33 @@ const generateNewComic = (form) => {
     request.open('POST', window.location.href)
     const formData = new FormData(form)
     console.log(formData.get('comic'), form)
-    let oldData = ''
+    document.body.className = 'pending'
+    let oldData = undefined
+    let timeout = 0
     request.onreadystatechange = () => {
         console.log("state change.. state: "+ request.readyState);
         if (request.readyState === 3) {
             let data = request.response
             data = data.split('<|startoftext|>', 2).join('')
             data = data.split('<|endoftext|>', 1)
+            console.log(request.response)
             if (data.length > 1) {
+                console.log("Aborting!")
                 request.abort()
-                console.log("staste change.. state: "+ request.readyState);
+                console.log("state change.. state: "+ request.readyState);
             }
             data = data.join('')
             if (data !== oldData) {
                 oldData = data
+                timeout = 0
                 transcript.textContent = data
                 generateComic(comic, data)
-                window.scrollTo(0,document.body.scrollHeight)
+                document.documentElement.scrollTop = 0;
+            } else {
+                if (timeout++ > 3) request.abort()
             }
-
         } else if (request.readyState === 4 || request.readyState === 0) {
+            document.body.className = ''
             button.disabled = false
         }
     }

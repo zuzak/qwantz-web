@@ -19,7 +19,7 @@ body
   background-position: top;
   background-repeat: no-repeat;
   background-size: contain;
-  background: linear-gradient(180deg, rgba(72,134,251,1) 0%, rgba(255,255,255,1) 40%);
+  background: linear-gradient(180deg, #4886fb 0%, rgba(255,255,255,1) 40%);
  
   color: gray
   font-family: "Lucida Console", monospace;
@@ -398,9 +398,9 @@ footer
     display: block;
     margin: auto;
     width: 100%;
-    min-height: 3em;
-    padding: 1em;
-    font-size: 16px;
+    min-height: 4em;
+    padding: 2em;
+    font-size: 14px;
   input
     padding: 0.5em;
     font-size: 100%;
@@ -439,8 +439,36 @@ div.preview.comic
 .generator details
   margin: 2em 0
 .comic-container
-  min-height: 534px;
-  min-width: 740px;
+ // min-height: 534px;
+  amx-width: 740px;
   margin-bottom: 3em;
 html
   scroll-behaviour: smooth;
+.preview, textarea, button, #lede
+  transition: all 2s ease 2s;
+.pending
+  .preview, textarea, button, #lede, input
+    display: none
+body:not(.pending)
+  .generator .comic.synthetic:not(:empty):after,
+    content: 'Machine Generated';
+    color: maroon;
+    outline: 1px solid maroon;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin: 1em;
+    padding: 0.5em;
+    text-align: center;
+    font-variant: small-caps;
+    display: table
+    float: right;
+.copyright
+  color: gray
+  font-size: 80%;
+  display: table;
+  float: right;
+  clear: right;
+  width: 239px;
+  margin-top: 0;
+  padding-right: 1.5em;
+  text-align: center;

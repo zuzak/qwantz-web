@@ -19,7 +19,7 @@ router.post('/generate', rateLimit({
   message: 'Rate limited -- try again later'
 }), upload.none(), function (req, res, next) {
   let prompt = req.body.comic ? req.body.comic : ''
-  const prefix = '<|startoftext|>' + prompt
+  const prefix = '<|startoftext|>\n' + prompt
   debug(req.body)
   const args = ['-m', '117M', 'g', '-l', '500', prefix]
   res.type('text')
@@ -32,6 +32,10 @@ router.post('/generate', rateLimit({
   gptStream.stdout.on('data', (data) => res.write(data))
   gptStream.stderr.on('data', (data) => res.write(data))
   gptStream.on('close', (code) => res.end())
+  req.on('close', (err) => {
+    debug('Closing connection')
+    gptStream.kill(15)
+  })
 })
 
 module.exports = router;
