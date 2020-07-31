@@ -140,7 +140,7 @@ main
 .panel:nth-child(1), .panel:nth-child(2), .panel:nth-child(3)
   border-bottom-width: $panel-border-thickness/2;
 
-.panel:nth-child(1)
+.panel:nth-child(6n+1)
   background-image: url("/images/panel1.svg");
   background-size: 154px 144px;
   width: 239px;
@@ -163,7 +163,7 @@ main
 
 
 
-.panel:nth-child(2)
+.panel:nth-child(6n+2)
   background-image: url("/images/panel2.svg");
   background-size: 123px 137px;
   background-position: bottom left;
@@ -184,7 +184,7 @@ main
 
 
 
-.panel:nth-child(3)
+.panel:nth-child(6n+3)
   background-image: url("/images/panel3.svg");
   background-size: 360px 184px;
   width: 358px;
@@ -228,7 +228,7 @@ main
     transform: rotate(60deg);
     transform-origin: 0% 0%;
 
-.panel:nth-child(4)
+.panel:nth-child(6n+4)
   background-image: url("/images/panel4.svg");
   background-size: 191px 170px;
   width: 190px;
@@ -263,7 +263,7 @@ main
     transform: rotate(250deg);
     transform-origin: 0% 0%;
 
-.panel:nth-child(5)
+.panel:nth-child(6n+5)
   background-image: url("/images/panel5.svg");
   background-size: 300px 177px;
   background-position: bottom -5px left -6px;
@@ -294,7 +294,7 @@ main
     transform: rotate(120deg);
     transform-origin: 0% 0%;
 
-.panel:nth-child(6)
+.panel:nth-child(6n)
   background-image: url("/images/panel6.svg");
   background-size: 128px 184px;
   background-position: bottom left 20px;
@@ -335,6 +335,8 @@ main
 
       transform: rotate(300deg);
       transform-origin: 0% 0%;
+.panel:nth-child(n+7)
+  background-color: #ededed
 
 footer
   display: block;
