@@ -169,7 +169,7 @@ main
   background-position: bottom left;
   width: 127px;
   div:last-child
-   // margin-bottom: 120px;
+   margin-bottom: 120px;
   .t-rex:last-child
     margin-bottom: 200px;
   .t-rex:last-child:after
@@ -203,6 +203,15 @@ main
     bottom: -10px;
     left: 170px;
     transform: rotate(120deg);
+    transform-origin: 0% 0%;
+  .utahraptor:last-child:after
+    content: '';
+    display: absolute;
+    border-top: $speech-line-thickness solid $utahraptor;
+    width: 30px;
+    bottom: -20px;
+    left: 2px;
+    transform: rotate(320deg);
     transform-origin: 0% 0%;
 
   .dromiceiomimus:last-child,
@@ -317,7 +326,7 @@ main
     position: absolute;
     border-top: $speech-line-thickness solid $utahraptor;
     width: 40px;
-    bottom: 0px;
+    bottom: -1em;
     left: 10%;
     transform: rotate(120deg);
     transform-origin: 0% 0%;
