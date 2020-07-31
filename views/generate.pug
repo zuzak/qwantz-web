@@ -4,7 +4,7 @@ block append head
   script(src='/javascripts/generate.js')
 
 block content
-  h1: a(href="/comic/random") Dinosaur Comics
+  h1: a(href="/comic/random") GPT Dinosaur Comics
   main.generator
 
     p#lede
@@ -25,7 +25,6 @@ block content
       | The OpenAI paper it originates from took ten attempts to get to a useable story, and they had a lot more computing power than this model.
       |
       | This works better in Firefox than Chrome, which will hang for about ten seconds but then work.
-    p.copyright Dinosaur Comics (C) 2003 Ryan North
     form(method="POST")#form
       textarea#textarea(name="comic")
       input#submit(type="submit",name="Generate comic")
