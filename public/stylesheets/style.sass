@@ -451,26 +451,17 @@ html
 .pending
   .preview, textarea, button, #lede, input
     display: none
-body:not(.pending)
-  .generator .comic.synthetic:not(:empty):after,
-    content: 'Machine Generated';
-    color: maroon;
-    outline: 1px solid maroon;
-    font-weight: bold;
-    text-transform: uppercase;
-    margin: 1em;
-    padding: 0.5em;
+
+body .generator .comic.synthetic:not(:empty):after
+    content: 'generated with the GPT-2 language model · qwantz.zuzakistan.com \A Dinosaur Comics (C) 2003 Ryan North'
+    color: gray
+    font-size: 80%;
+    display: block;
+    width: 100%;
+    font-align: center
+    white-space: pre;
+    margin-top: 0.5em;
+    padding-right: 1.5em;
     text-align: center;
-    font-variant: small-caps;
-    display: table
-    float: right;
-.copyright
-  color: gray
-  font-size: 80%;
-  display: table;
-  float: right;
-  clear: right;
-  width: 239px;
-  margin-top: 0;
-  padding-right: 1.5em;
-  text-align: center;
+body.pending .generator .comic.synthetic:not(:empty):after
+    content: 'generating with the GPT-2 language model · qwantz.zuzakistan.com \A Dinosaur Comics (C) 2003 Ryan North'
