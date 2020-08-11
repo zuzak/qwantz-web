@@ -1,0 +1,3 @@
+[submodule "comics"]
+	path = comics
+	url = https://github.com/zuzak/qwantz-gpt
