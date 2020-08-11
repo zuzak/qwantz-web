@@ -204,6 +204,7 @@ main
     left: 170px;
     transform: rotate(120deg);
     transform-origin: 0% 0%;
+
   .utahraptor:last-child:after
     content: '';
     display: absolute;
@@ -374,11 +375,11 @@ footer
     margin-top: 0;
 
 
-.prompt .panel, .preview .panel
+.prompt.panel, .prompt .panel, .preview .panel
     filter: sepia(0.6);
     background-color: #aefff8;
 
-.prompt .panel:before, .preview .panel:before
+.prompt .panel:before, .preview .panel:before, .prompt.panel:before
     content: 'TEXT PROMPT'
     font-weight: bold;
     letter-spacing: 0.2em;
@@ -387,7 +388,7 @@ footer
     display: block;
     text-align: center;
 
-.prompt .panel:before
+.prompt .panel:before, .prompt.panel:before
   content: 'TEXT PROMPT'
 .preview .panel:before
   content: 'PREVIEW'
