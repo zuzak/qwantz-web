@@ -29,8 +29,8 @@ app.use(express.static(path.join(__dirname, 'public'), {
   maxAge: 1000 * 60 * 60
 }));
 
-app.use('/', indexRouter);
 app.use('/gpt', gptRouter);
+app.use('/', indexRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
