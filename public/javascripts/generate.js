@@ -99,7 +99,9 @@ const generateNewComic = (form) => {
     let timeout = 0
     request.onreadystatechange = () => {
         console.log("state change.. state: "+ request.readyState);
-        if (request.readyState === 3) {
+        if (request.readyState === 2) {
+            comic.innerHTML = '<p class="placeholder">Generating comic... (This might take over ten seconds)</p>'
+        } else if  (request.readyState === 3) {
             let data = request.response
             data = data.split('<|startoftext|>', 2).join('')
             data = data.split('<|endoftext|>', 1)
