@@ -21,13 +21,14 @@ router.get('/comic', function (req, res, next) {
 })
 
 
-router.get('/generate', function (req, res, next) {
+
+router.get(['/generate', '/comic/generate'], function (req, res, next) {
   res.redirect('/gpt/generate')
   //res.render('generate')
 })
 const bodyParser = require('body-parser').text()
 router.post('/generate', bodyParser, function (req, res, next) {
-  
+
   const comic = req.body.comic.replace(/\r/g, '')
   const buffer = new Buffer(comic)
   const base64 = buffer.toString('base64')
@@ -57,11 +58,13 @@ router.get('/comic/random', rateLimit({
   message: 'You’re refreshing too fast! Slow down!'
 }), (req, res, next) => next())
 
-router.get('/comic/:index', function (req, res, next) {
+router.get(['/comic/:index', '/comic/:index/:prefix'], function (req, res, next) {
   const dir = 'comics'
   let fileName = req.params.index
   if (req.params.index == 'random') {
-    const files = fs.readdirSync(dir)
+    let files = fs.readdirSync(dir)
+    if (req.params.prefix) files = files.filter((x) => x.indexOf(req.params.prefix) != -1)
+    if (req.params.index == 'generate') return next()
     fileName =  files[Math.floor(Math.random() * files.length)]
   }
   const synthetic = fileName.includes('gpt')

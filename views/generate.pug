@@ -8,7 +8,9 @@ block content
   main.generator
 
     p#lede
-      | Enter a prompt for GPT2tc into the textbox.
+      | Enter a prompt for&nbsp;
+      a(href="https://textsynth.org/nncp/gpt2tc.html") GPT2tc
+      | &nbsp;into the textbox.
       | Press enter twice to start a new panel, but one works best.
       |
       | Use ALL CAPS to add captions.
@@ -24,7 +26,9 @@ block content
       | GPT-2 can take many attempts to generate good text.
       | The OpenAI paper it originates from took ten attempts to get to a useable story, and they had a lot more computing power than this model.
       |
-      | This works better in Firefox than Chrome, which will hang for about ten seconds but then work.
+      | This works well in Firefox, whereas in Chrome it will make you wait for the full comic to generate before showing it, due to a&nbsp;
+      a(href="https://bugs.chromium.org/p/chromium/issues/detail?id=156023") bug
+      | .
     form(method="POST")#form
-      textarea#textarea(name="comic")
+      textarea#textarea(name="comic",placeholder="T-Rex: Hey everyone! I'm a sassy T-dude!")
       input#submit(type="submit",name="Generate comic")
