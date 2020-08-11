@@ -20,8 +20,10 @@ router.post('/generate', rateLimit({
 }), upload.none(), function (req, res, next) {
   let prompt = req.body.comic ? req.body.comic : ''
   const prefix = '<|startoftext|>\n' + prompt
+
+  const modelToUse = '117M'
   debug(req.body)
-  const args = ['-m', '117M', 'g', '-l', '500', prefix]
+  const args = ['-m', modelToUse, 'g', '-l', '500', prefix]
   res.type('text')
   const gptStream = spawn(
     './gpt2tc',
