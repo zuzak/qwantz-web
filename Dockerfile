@@ -13,6 +13,9 @@ RUN tar xvf /tmp/gpt2tc.tar.gz --directory /usr/src/app/gpt --strip-components 1
 ADD https://github.com/zuzak/qwantz-gpt/archive/master.tar.gz /tmp/transcripts.tar.gz
 RUN tar xvf /tmp/transcripts.tar.gz --directory /usr/src/app/comics --strip-components 1
 
+# workaround as Google Cloud Run won't do Git LFS
+ADD https://github.com/zuzak/qwantz-web/blob/master/gpt/gpt2_117M.bin?raw=true gpt/gpt2_117M.bin
+
 EXPOSE 3000
 
 CMD [ "node", "bin/www" ]
