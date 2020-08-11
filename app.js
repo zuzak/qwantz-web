@@ -32,7 +32,7 @@ app.use(express.static(path.join(__dirname, 'public'), {
 if (process.env.TRUST_PROXY) {
   app.set('trust proxy')
 }
-if (process.env.ENABLE_GPT) {
+if (!process.env.DISABLE_GPT) {
   app.use('/gpt', gptRouter);
 }
 app.use('/', indexRouter);

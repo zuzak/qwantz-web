@@ -27,7 +27,7 @@ and place it in the `gpt` directory.
 |---------------|--------------------------------------------------------------------------------------------------------------------------|
 | `NODE_ENV`    | If set to `production`, will suppress things like stack traces                                                           |
 | `TRUST_PROXY` | If set, treat the left-most entry in the `X-Forwarded-Header-*` as the client's IP address, instead of the "actual" one. |
-| `USE_GPT`     | Set this to enable the GPT routes; otherwise they will just 404.                                                         |
+| `DISABLE_GPT` | Set this to disable the GPT routes.                                                                                      |
 | `PORT`        | The port the app will listen on (by default, 3000).                                                                      |
 
 The TRUST_PROXY variable is useful when you're hosting the app behind a proxy and
