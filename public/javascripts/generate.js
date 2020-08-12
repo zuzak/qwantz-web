@@ -89,6 +89,7 @@ const generateNewComic = (form) => {
     const button = document.getElementById('submit')
     button.disabled = true
     const comic = document.getElementById('comic')
+    comic.innerHTML = '<p class="placeholder">Queuing to generate comic... (This might take over ten seconds)</p>'
     const transcript = getTranscriptElement(form)
     const request = new XMLHttpRequest()
     request.open('POST', window.location.href)
