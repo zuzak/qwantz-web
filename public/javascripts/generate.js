@@ -96,6 +96,11 @@ const generateNewComic = (form) => {
     const formData = new FormData(form)
     console.log(formData.get('comic'), form)
     document.body.className = 'pending'
+    try {
+    gtag('event', 'generateComic', {comic: formData.get('comic')})
+    } catch (e) {
+      console.log('no ganalytics')
+    }
     let oldData = undefined
     let timeout = 0
     request.onreadystatechange = () => {
