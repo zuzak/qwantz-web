@@ -147,7 +147,7 @@ const getTranscriptElement = (form) => {
     const summary = document.createElement('summary')
     summary.textContent = 'Transcript'
     details.append(summary)
-    
+
     const transcript = document.createElement('p')
     transcript.id = 'transcript'
     transcript.className = 'transcript'
