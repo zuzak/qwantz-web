@@ -1,0 +1,43 @@
+extends layout
+
+block append head
+  script(src='/javascripts/generate.js')
+
+block content
+  main
+    h1: a(href="/comic/random") GPT Dinosaur Comics
+    h2 Privacy Notice
+    p This website collects the following data:
+    ul
+      li the contents of prompts you enter into the GPT comic generator
+      li analytics via Google Analytics
+      li no personal information
+
+    p.
+      We may share the prompts you input into the system.
+      We won't share them publicly on this website unless you opted in via the checkbox
+      on the generator page.
+
+    p.
+      We use Google Analytics to help understand how you use the website,
+      in order to make the website better. The data is anonymised before
+      being used for analytics processing, and is not personally identifiable.
+
+      Google Analytics processes information about:
+    ul
+      li the pages you visit on this website
+      li how long you spend on each page
+      li how you got to this site
+      li what you click on while visiting the site
+
+    p
+      | You can opt out out of our use of Google Analytics by enabling the DNT
+      | (do not track) feature of your browser. Alternatively, you can opt out 
+      | globally by installing the&nbsp;
+      a(href="https://tools.google.com/dlpage/gaoptout") Google Analytics Opt-out Browser Add-on
+      | .
+
+    p.
+      This website contains links to other websites.
+      This privacy notice applies only to this website, so if you click a link to another website,
+      you should consider reading their privacy policy.
