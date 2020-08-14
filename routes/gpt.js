@@ -20,6 +20,7 @@ router.post('/generate', rateLimit({
 }), upload.none(), function (req, res, next) {
   let prompt = req.body.comic ? req.body.comic : ''
   const prefix = '<|startoftext|>\n' + prompt
+  const delimiter = [ '<', '|', 'end', 'of', 'text', '|', '>' ]
 
   const modelToUse = '117M'
   debug(req.body)
@@ -31,7 +32,19 @@ router.post('/generate', rateLimit({
     {cwd: 'gpt', shell: false}
   )
 
-  gptStream.stdout.on('data', (data) => res.write(data))
+  let i = 0
+  gptStream.stdout.on('data', (data) => {
+    res.write(data)
+    if (data.includes(delimiter[i])) {
+      i++
+      if (i == delimiter.length) {
+        debug('Killing stream early')
+        gptStream.kill(15)
+      }
+    } else {
+      i = 0
+    }
+  })
   gptStream.stderr.on('data', (data) => res.write(data))
   gptStream.on('close', (code) => res.end())
   req.on('close', (err) => {
