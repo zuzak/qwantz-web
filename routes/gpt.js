@@ -23,7 +23,7 @@ router.post('/generate', rateLimit({
   const delimiter = [ '<', '|', 'end', 'of', 'text', '|', '>' ]
 
   const modelToUse = '117M'
-  debug(req.body)
+  debug(JSON.stringify(req.body))
   const args = ['-m', modelToUse, 'g', '-l', '500', prefix]
   res.type('text')
   const gptStream = spawn(
