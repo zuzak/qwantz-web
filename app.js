@@ -35,6 +35,12 @@ app.use(express.static(path.join(__dirname, 'public'), {
 if (process.env.TRUST_PROXY) {
   app.set('trust proxy')
 }
+
+app.all((req, res, next) => {
+  res.locals.dnt = req.get('dnt')
+  next()
+})
+
 if (!process.env.DISABLE_GPT) {
   app.use('/gpt', gptRouter);
 }

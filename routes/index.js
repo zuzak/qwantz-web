@@ -20,6 +20,10 @@ router.get('/comic', function (req, res, next) {
   res.redirect('/comic/random')
 })
 
+router.get('/privacy', function (req, res, next) {
+  res.render('policies', { title: 'Policies' })
+})
+
 
 
 router.get(['/generate', '/comic/generate'], function (req, res, next) {

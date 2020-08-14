@@ -6,11 +6,12 @@ html
       // hello! patches welcome at https://github.com/zuzak/qwantz-web
       link(rel='stylesheet', href='/stylesheets/style.css')
       meta(name='viewport', content='width=725', initial-scale='2.0')
-      script(async,src="https://www.googletagmanager.com/gtag/js?id=UA-20878451-8")
-      script.
-       window.dataLayer = window.dataLayer || [];
-         function gtag(){dataLayer.push(arguments);}
-         gtag('js', new Date());
-         gtag('config', 'UA-20878451-8');
+      if !dnt
+        script(async,src="https://www.googletagmanager.com/gtag/js?id=UA-20878451-8")
+        script.
+         window.dataLayer = window.dataLayer || [];
+           function gtag(){dataLayer.push(arguments);}
+           gtag('js', new Date());
+           gtag('config', 'UA-20878451-8');
   body(class=bodyClass?bodyClass:'')
     block content
