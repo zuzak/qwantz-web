@@ -89,7 +89,7 @@ const generateNewComic = (form) => {
     const button = document.getElementById('submit')
     button.disabled = true
     const comic = document.getElementById('comic')
-    comic.innerHTML = '<p class="placeholder">Generating a comic... (this will at least ten seconds -- use Firefox if you want it quicker)</p>'
+    comic.innerHTML = '<p class="placeholder">Generating a comic... (this often takes around ten seconds)</p>'
     const transcript = getTranscriptElement(form)
     const request = new XMLHttpRequest()
     request.open('POST', window.location.href)
@@ -106,7 +106,7 @@ const generateNewComic = (form) => {
     request.onreadystatechange = () => {
         console.log("state change.. state: "+ request.readyState);
         if (request.readyState === 2) {
-            comic.innerHTML = '<p class="placeholder">Generating comic... (This might take over ten seconds)</p>'
+            comic.innerHTML = '<p class="placeholder">Comic almost ready...</p>'
         } else if  (request.readyState === 3) {
             let data = request.response
             data = data.split('<|startoftext|>', 2).join('')
