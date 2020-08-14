@@ -5,6 +5,9 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var sassMiddleware = require('node-sass-middleware');
 
+const {ErrorReporting} = require('@google-cloud/error-reporting');
+const errors = new ErrorReporting();
+
 var indexRouter = require('./routes/index');
 var gptRouter = require('./routes/gpt');
 
@@ -42,7 +45,8 @@ app.use(function(req, res, next) {
   next(createError(404));
 });
 
-// error handler
+// error handlers
+app.use(errors.express)
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development
   console.log(err)
