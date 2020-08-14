@@ -2,22 +2,34 @@ var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
-var logger = require('morgan');
 var sassMiddleware = require('node-sass-middleware');
 
+const winston = require('winston')
+const expressWinston = require('express-winston');
+const {LoggingWinston} = require('@google-cloud/logging-winston');
 const {ErrorReporting} = require('@google-cloud/error-reporting');
 const errors = new ErrorReporting();
 
-var indexRouter = require('./routes/index');
-var gptRouter = require('./routes/gpt');
+const loggerTransports = [
+  new winston.transports.Console({
+    colorize: process.env.NODE_ENV !== 'production',
+    LoggingWinston
+  })
+]
 
 var app = express();
+
+app.use(expressWinston.logger({
+  transports: loggerTransports
+}))
+
+var indexRouter = require('./routes/index');
+var gptRouter = require('./routes/gpt');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
-app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
@@ -52,7 +64,7 @@ app.use(function(req, res, next) {
 });
 
 // error handlers
-app.use(errors.express)
+
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development
   console.log(err)
@@ -63,5 +75,10 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+app.use(errors.express)
+app.use(expressWinston.errorLogger({
+  transports: loggerTransports
+}))
+
 
 module.exports = app;
