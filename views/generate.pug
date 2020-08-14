@@ -32,4 +32,7 @@ block content
       | !
     form(method="POST")#form
       textarea#textarea(name="comic",placeholder="T-Rex: Hey everyone! I'm a sassy T-dude!")
+      .shareable
+        input(type="checkbox",name="shareable")#shareable
+        label(for="shareable") Share this prompt with other users in the future, maybe
       input#submit(type="submit",name="Generate comic")

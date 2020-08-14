@@ -413,7 +413,11 @@ footer
     min-height: 4em;
     padding: 2em;
     font-size: 14px;
-  input
+  .shareable
+    padding: 1em
+    font-size: 80%;
+    color: gray
+  input[type="submit"]
     padding: 0.5em;
     font-size: 100%;
     margin: 1em auto;
@@ -459,7 +463,7 @@ html
 .preview, textarea, button, #lede
   transition: all 2s ease 2s;
 .pending
-  .preview, textarea, button, #lede, input
+  .preview, textarea, button, #lede, input, .shareable
     display: none
 
 body .generator .comic.synthetic:not(:empty):after
