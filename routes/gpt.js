@@ -27,7 +27,7 @@ router.post('/generate', rateLimit({
   if (!Number.isInteger(kValue)) kValue = 40
 
   const modelToUse = '117M'
-  debug(JSON.stringify(req.body))
+  console.log(JSON.stringify(req.body))
   const args = ['-m', modelToUse, '-l', '500', '-k',  '' + kValue, 'g', prefix]
   res.type('text')
   const gptStream = spawn(
