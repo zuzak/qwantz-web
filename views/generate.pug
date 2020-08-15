@@ -40,7 +40,7 @@ block content
             | top-
             abbr(title='for every token, pick from the kth most probable'): i k
             |  =
-          input(name="topk",type="number",step=1,min=0,size=3,value=40)
+          input(name="topk",type="number",step=1,min=1,size=3,value=40)
 
       input#submit(type="submit",name="Generate comic")
       div: a.shareable(href='/privacy') Privacy
