@@ -22,9 +22,12 @@ router.post('/generate', rateLimit({
   const prefix = '<|startoftext|>\n' + prompt
   const delimiter = [ '<', '|', 'end', 'of', 'text', '|', '>' ]
 
+  let kValue = req.body.topk
+  if (!Number.isInteger(kValue)) kValue = 40
+
   const modelToUse = '117M'
   debug(JSON.stringify(req.body))
-  const args = ['-m', modelToUse, 'g', '-l', '500', prefix]
+  const args = ['-m', modelToUse, 'g', '-l', '500', '-k', kValue, '--', prefix]
   res.type('text')
   const gptStream = spawn(
     './gpt2tc',
