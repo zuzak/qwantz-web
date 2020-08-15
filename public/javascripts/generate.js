@@ -85,11 +85,20 @@ const jsonToHtml = (json) => {
     return comic.innerHTML
 }
 
+const getComicNumber = () => {
+    const key = 'comicCount'
+    const oldNumber = window.localStorage.getItem(key)
+    let newNumber = 1
+    if (oldNumber) newNumber = parseInt(oldNumber) + 1
+    window.localStorage.setItem(key, newNumber)
+    return newNumber
+}
 const generateNewComic = (form) => {
+    const comicId = getComicNumber()
     const button = document.getElementById('submit')
     button.disabled = true
     const comic = document.getElementById('comic')
-    comic.innerHTML = '<p class="placeholder">Generating a comic... (this often takes around ten seconds)</p>'
+    comic.innerHTML = '<p class="placeholder">Generating comic #' + comicId + '... (this often takes around ten seconds)</p>'
     const transcript = getTranscriptElement(form)
     const request = new XMLHttpRequest()
     request.open('POST', window.location.href)
