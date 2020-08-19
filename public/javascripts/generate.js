@@ -37,30 +37,57 @@ window.onload = () => {
     }
 }
 
-const generateComic = (comic, transcript) => {
-    const json = transcriptToJson(transcript)
+const generateComic = (comic, transcript, prompt) => {
+    const json = transcriptToJson(transcript, prompt)
+    console.log(json)
     comic.innerHTML = jsonToHtml(json)
 }
 
-const transcriptToJson = (transcript) => {
+const markupLine = (line, prompt) => {
+    if (line.trim().startsWith(prompt.trim())) {
+        let promptWithoutSpeaker = prompt.split(': ')
+        if (promptWithoutSpeaker.length == 1) return line
+        promptWithoutSpeaker = promptWithoutSpeaker[promptWithoutSpeaker.length - 1]
+        line = line.replace(promptWithoutSpeaker, promptWithoutSpeaker + '<|endofprompt|>')
+    }
+    return line
+}
+
+const normalizeTranscript = (transcript) => {
     const slugify = (str) => str.replace(/[!\"# $%&'\(\)\*\+,\.\/:;<=>\?\@\[\\\]\^`\{\|\}~]/g, '-').toLowerCase();
-    const panels = transcript.split('\n\n')
+    if (!transcript) return transcript
+    const lines = transcript.split('\n')
+
+    return lines.map((line) => {
+        const splitLine = line.split(': ')
+        if (splitLine.length === 1) {
+            if (splitLine.length === 1) {
+                if (line && line == line.toUpperCase()) {
+                    return slugify('Narrator') + ': ' + line
+                }
+            }
+        }
+        if (splitLine[1]) return slugify(splitLine[0]) + ': ' + splitLine[1]
+        return splitLine[1]
+    }).join('\n')
+}
+const transcriptToJson = (transcript, prompt) => {
+    const nTranscript = normalizeTranscript(transcript)
+    const nPrompt = normalizeTranscript(prompt)
+    const panels = nTranscript.split('\n\n')
     return parsedPanels = panels.map((panel) => {
         const lines = panel.split('\n')
         return lines.map((line) => {
+            const ret = {}
+            if (prompt) {
+                line = markupLine(line, nPrompt)
+            }
             if (line.startsWith('{{')) return null
             const x = line.split(': ')
-            if (x.length === 1) {
-                if (line && line == line.toUpperCase()) {
-                    return {speaker: slugify('Narrator'), text: line}
-                } else {
-                    return null
-                }
-            }
-            const speaker = slugify(x[0])
-            const speech = x.splice(1).join(': ');
-            if (!speech) return null
-            return {speaker, text: speech}
+            ret.speaker = x[0]
+            ret.text = x.splice(1).join(': ');
+            if (!ret) return null
+            return ret
         })
     })
 }
@@ -75,7 +102,15 @@ const jsonToHtml = (json) => {
                 if (line !== null) {
                     const eLine = document.createElement('div')
                     eLine.className = line.speaker
-                    eLine.textContent = line.text
+                    if (line.text.includes('<|endofprompt|>')) {
+                        const mark = document.createElement('mark')
+                        const splitLine = line.text.split('<|endofprompt|>')
+                        mark.textContent = splitLine[0]
+                        eLine.textContent = splitLine[1]
+                        eLine.prepend(mark)
+                    } else {
+                        eLine.textContent = line.text
+                    }
                     ePanel.appendChild(eLine)
                 }
             }
@@ -131,7 +166,7 @@ const generateNewComic = (form) => {
                 oldData = data
                 timeout = 0
                 transcript.textContent = data
-                generateComic(comic, data)
+                generateComic(comic, data, formData.get('comic'))
                 document.documentElement.scrollTop = 0;
             } else {
                 if (timeout++ > 3) request.abort()
